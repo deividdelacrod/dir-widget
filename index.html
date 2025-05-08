@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>App Agente Diri</title>
+  <!-- 2. Importa solo el Streams SDK -->
+  <script src="https://sdk.amazonaws.com/js/amazon-connect-streams.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 10px; }
+    .label { font-weight: bold; }
+    .field { margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+  <h2>Información del Cliente</h2>
+  <div id="status">Esperando llamada…</div>
+  <div id="info" style="display:none">
+    <div class="field"><span class="label">VIP:</span>               <span id="vip"></span></div>
+    <div class="field"><span class="label">Oferta:</span>            <span id="oferta"></span></div>
+    <div class="field"><span class="label">Tipo:</span>             <span id="tipo"></span></div>
+    <div class="field"><span class="label">Estatus DN:</span>       <span id="estatusdn"></span></div>
+    <div class="field"><span class="label">Portabilidad:</span>      <span id="portabilidad"></span></div>
+    <div class="field"><span class="label">Marca:</span>            <span id="marca"></span></div>
+    <div class="field"><span class="label">Confiable:</span>        <span id="confiable"></span></div>
+    <div class="field"><span class="label">Recargas 30d:</span>      <span id="recargas"></span></div>
+    <div class="field"><span class="label">Días Activación:</span>  <span id="dias"></span></div>
+  </div>
+
+  <script>
+    // 3. Suscripción a eventos de contacto sin initCCP()
+    connect.contact(contact => {
+      document.getElementById("status").textContent = "Llamada en curso…";
+
+      contact.onConnected(() => {
+        // 3.2 Obtener atributos mapeados en tu flujo
+        contact.getAttributes(attrs => {
+          document.getElementById("vip").textContent          = attrs.vip.value;
+          document.getElementById("oferta").textContent       = attrs.ofertacontratada.value;
+          document.getElementById("tipo").textContent         = attrs.tipo.value;
+          document.getElementById("estatusdn").textContent    = attrs.estatusdn.value;
+          document.getElementById("portabilidad").textContent = attrs.estatusportabilidad.value;
+          document.getElementById("marca").textContent        = attrs.nombremarca.value;
+          document.getElementById("confiable").textContent    = attrs.clienteConfiable.value;
+          document.getElementById("recargas").textContent     = attrs.recargas30dias_total.value;
+          document.getElementById("dias").textContent         = attrs.diasDesdeActivacion.value;
+
+          document.getElementById("info").style.display = "block";
+        });
+      });
+
+      contact.onEnded(() => {
+        document.getElementById("status").textContent = "Llamada finalizada.";
+      });
+    });
+  </script>
+</body>
+</html>
