@@ -1,9 +1,0 @@
-# Node modules (dependencies)
-node_modules/
-
-# Build output directory
-dist/
-
-# OS-specific files
-.DS_Store
-Thumbs.db
