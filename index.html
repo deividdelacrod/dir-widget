@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Diri - Información de Cliente</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    .atributo {
+      margin-bottom: 10px;
+    }
+    .etiqueta {
+      font-weight: bold;
+    }
+    .value {
+      margin-left: 10px;
+    }
+    .query-section {
+      margin-top: 30px;
+    }
+    .query-section input {
+      width: 60%;
+      padding: 8px;
+      margin-right: 10px;
+    }
+    .query-section button {
+      padding: 8px 12px;
+    }
+    .response-output {
+      margin-top: 20px;
+      white-space: pre-wrap;
+      background-color: #f4f4f4;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+  </style>
+<script defer src="bundle.js"></script></head>
+<body>
+  <h1>Detalles del Cliente</h1>
+  <div class="atributo"><span class="etiqueta">Número Marcado:</span> <span id="dnTemporal">Cargando...</span></div>
+  <div class="atributo"><span class="etiqueta">Oferta Contratada:</span> <span id="ofertacontratada">Cargando...</span></div>
+  <div class="atributo"><span class="etiqueta">Estatus DN:</span> <span id="estatusdn">Cargando...</span></div>
+  <div class="atributo"><span class="etiqueta">Nombre de Marca:</span> <span id="nombremarca">Cargando...</span></div>
+
+  <div class="query-section">
+    <h2>Realizar Consulta</h2>
+    <input type="text" id="queryInput" placeholder='Escribe tu consulta aquí' />
+    <button id="sendQuery">Enviar Consulta</button>
+    <div id="responseOutput" class="response-output"></div>
+  </div>
+
+  <script src="bundle.js"></script>
+</body>
+</html>
